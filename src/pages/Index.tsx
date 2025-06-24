@@ -1,51 +1,62 @@
 
 import { useState } from 'react';
-import { Shield, Network, Key, Hash, Code, Search, Zap, Terminal } from 'lucide-react';
+import { Shield, Network, Key, Hash, Code, Search, Zap, Terminal, Scan, Home, Settings } from 'lucide-react';
 import ToolCard from '../components/ToolCard';
 import NetworkTools from '../components/NetworkTools';
 import EncodingTools from '../components/EncodingTools';
 import HashTools from '../components/HashTools';
 import PasswordTools from '../components/PasswordTools';
 import TextAnalysis from '../components/TextAnalysis';
+import VulnScanner from '../components/VulnScanner';
+import WebsiteCloner from '../components/WebsiteCloner';
+import LitecoinWallet from '../components/LitecoinWallet';
+import UsernameChecker from '../components/UsernameChecker';
 
 const Index = () => {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
   const categories = [
     {
-      id: 'network',
-      title: 'Network Tools',
-      description: 'Port scanning, DNS lookup, Whois, and network reconnaissance',
+      id: 'ip-scanner',
+      title: 'Advanced IP Scanner',
+      description: 'Advanced search across multiple websites and APIs',
       icon: Network,
       component: NetworkTools
+    },
+    {
+      id: 'vuln-scanner',
+      title: 'AI Vulnerability Scanner',
+      description: 'Advanced search of basic vulnerabilities',
+      icon: Scan,
+      component: VulnScanner
+    },
+    {
+      id: 'website-cloner',
+      title: 'Website Cloner',
+      description: 'Clone any website\'s client-side interface',
+      icon: Code,
+      component: WebsiteCloner
+    },
+    {
+      id: 'ltc-wallet',
+      title: 'Temp LTC Wallet',
+      description: 'Create your temporary LTC wallet for quick transfers',
+      icon: Key,
+      component: LitecoinWallet
+    },
+    {
+      id: 'username-checker',
+      title: 'Username Checker',
+      description: 'Check username availability across multiple platforms',
+      icon: Search,
+      component: UsernameChecker
     },
     {
       id: 'encoding',
       title: 'Encoding/Decoding',
       description: 'Base64, URL, HTML encoding and decoding utilities',
-      icon: Code,
-      component: EncodingTools
-    },
-    {
-      id: 'hash',
-      title: 'Hash Tools',
-      description: 'MD5, SHA1, SHA256 hash generation and verification',
       icon: Hash,
-      component: HashTools
-    },
-    {
-      id: 'password',
-      title: 'Password Tools',
-      description: 'Secure password generation and strength analysis',
-      icon: Key,
-      component: PasswordTools
-    },
-    {
-      id: 'text',
-      title: 'Text Analysis',
-      description: 'Character counting, word frequency, and text statistics',
-      icon: Search,
-      component: TextAnalysis
+      component: EncodingTools
     }
   ];
 
@@ -77,11 +88,24 @@ const Index = () => {
       {/* Header */}
       <div className="border-b border-cyber-border bg-cyber-card/50 backdrop-blur-sm sticky top-0 z-10">
         <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center gap-4">
-            <Shield className="w-8 h-8 text-cyber-accent animate-glow" />
-            <div>
-              <h1 className="text-3xl font-bold text-gradient">CyberTools</h1>
-              <p className="text-cyber-text/70 text-sm">Professional Cybersecurity & Penetration Testing Suite</p>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-cyber-accent rounded-lg flex items-center justify-center text-2xl font-bold text-black animate-glow">
+                O
+              </div>
+              <div>
+                <h1 className="text-3xl font-bold text-gradient">Override_</h1>
+                <p className="text-cyber-text/70 text-sm">Professional Cybersecurity & Penetration Testing Suite</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-4">
+              <button className="cyber-button px-4 py-2 rounded-md flex items-center gap-2">
+                <Settings className="w-4 h-4" />
+                Settings
+              </button>
+              <button className="cyber-button px-4 py-2 rounded-md flex items-center gap-2">
+                Login
+              </button>
             </div>
           </div>
         </div>
@@ -95,7 +119,7 @@ const Index = () => {
             <Terminal className="w-16 h-16 text-cyber-accent animate-pulse" />
           </div>
           <h2 className="text-4xl font-bold mb-4 text-gradient">
-            Professional Security Tools
+            Override Security Tools
           </h2>
           <p className="text-cyber-text/80 text-lg max-w-2xl mx-auto">
             A comprehensive collection of cybersecurity and penetration testing tools 
@@ -118,7 +142,7 @@ const Index = () => {
 
         {/* Features Section */}
         <div className="mt-20 text-center">
-          <h3 className="text-2xl font-bold mb-8 text-gradient">Why Choose CyberTools?</h3>
+          <h3 className="text-2xl font-bold mb-8 text-gradient">Why Choose Override?</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="cyber-card text-center">
               <Zap className="w-12 h-12 text-cyber-accent mx-auto mb-4" />
