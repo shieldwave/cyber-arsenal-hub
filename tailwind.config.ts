@@ -58,7 +58,7 @@ export default {
 					card: '#1a1a1a',
 					border: '#333333',
 					text: '#e0e0e0',
-					accent: '#00ff41',
+					accent: '#ffffff',
 					hover: '#2a2a2a',
 				}
 			},
@@ -85,17 +85,34 @@ export default {
 					}
 				},
 				glow: {
-					'0%, 100%': { boxShadow: '0 0 5px #00ff41' },
-					'50%': { boxShadow: '0 0 20px #00ff41, 0 0 30px #00ff41' }
+					'0%, 100%': { boxShadow: '0 0 5px #ffffff' },
+					'50%': { boxShadow: '0 0 20px #ffffff, 0 0 30px #ffffff' }
+				},
+				logoFloat: {
+					'0%, 100%': { transform: 'translateY(0px)' },
+					'50%': { transform: 'translateY(-10px)' }
+				},
+				pulse: {
+					'0%, 100%': { 
+						transform: 'scale(1)', 
+						opacity: '1' 
+					},
+					'50%': { 
+						transform: 'scale(1.05)', 
+						opacity: '0.9' 
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				glow: 'glow 2s ease-in-out infinite alternate'
+				glow: 'glow 2s ease-in-out infinite alternate',
+				logoFloat: 'logoFloat 6s ease-in-out infinite',
+				pulse: 'pulse 2s ease-in-out infinite'
 			},
 			fontFamily: {
 				mono: ['JetBrains Mono', 'Consolas', 'Monaco', 'Courier New', 'monospace'],
+				sans: ['Inter', 'system-ui', 'sans-serif'],
 			}
 		}
 	},
