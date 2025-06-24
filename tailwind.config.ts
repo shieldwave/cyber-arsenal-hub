@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -52,15 +53,13 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
+				cyber: {
+					bg: '#0c0c0c',
+					card: '#1a1a1a',
+					border: '#333333',
+					text: '#e0e0e0',
+					accent: '#00ff41',
+					hover: '#2a2a2a',
 				}
 			},
 			borderRadius: {
@@ -84,11 +83,19 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				glow: {
+					'0%, 100%': { boxShadow: '0 0 5px #00ff41' },
+					'50%': { boxShadow: '0 0 20px #00ff41, 0 0 30px #00ff41' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				glow: 'glow 2s ease-in-out infinite alternate'
+			},
+			fontFamily: {
+				mono: ['JetBrains Mono', 'Consolas', 'Monaco', 'Courier New', 'monospace'],
 			}
 		}
 	},
