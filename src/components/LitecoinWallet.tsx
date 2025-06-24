@@ -55,26 +55,28 @@ const LitecoinWallet = () => {
             <span className="text-sm text-[#d4d4d4] font-medium">Last 5 transactions</span>
           </div>
           
-          <div className="relative z-[1] text-center mb-5">
-            <img src="/static/images/qr_placeholder.png" alt="QR Code" className="w-[120px] h-[120px] mx-auto" />
+          <div className="relative z-[1] text-center mb-8">
+            <div className="inline-block p-4 bg-white rounded-xl mb-4">
+              <img src="/static/images/qr_placeholder.png" alt="QR Code" className="w-[120px] h-[120px]" />
+            </div>
           </div>
           
-          <div className="space-y-4 relative z-[1]">
-            <div className="bg-black p-4 rounded-md">
-              <p className="text-[#999] text-sm">Address:</p>
-              <p className="text-white font-mono">{wallet.address}</p>
+          <div className="space-y-6 relative z-[1]">
+            <div className="bg-[rgba(15,15,15,0.8)] p-6 rounded-xl border border-[rgba(255,255,255,0.1)]">
+              <p className="text-[#999] text-sm mb-2">Address:</p>
+              <p className="text-white font-mono text-lg break-all">{wallet.address}</p>
             </div>
             
-            <div className="bg-black p-4 rounded-md">
-              <p className="text-[#999] text-sm">Balance:</p>
-              <p className="text-white font-mono text-lg">{wallet.balance}</p>
+            <div className="bg-[rgba(15,15,15,0.8)] p-6 rounded-xl border border-[rgba(255,255,255,0.1)]">
+              <p className="text-[#999] text-sm mb-2">Balance:</p>
+              <p className="text-white font-mono text-2xl font-bold">{wallet.balance}</p>
             </div>
             
-            <div>
-              <h4 className="text-white mb-2">Recent Transactions:</h4>
-              <ul className="space-y-1">
+            <div className="bg-[rgba(15,15,15,0.8)] p-6 rounded-xl border border-[rgba(255,255,255,0.1)]">
+              <h4 className="text-white mb-4 font-semibold">Recent Transactions:</h4>
+              <ul className="space-y-2">
                 {wallet.transactions.map((tx: string, index: number) => (
-                  <li key={index} className="text-[#ccc] text-sm font-mono">
+                  <li key={index} className="text-[#ccc] text-sm font-mono p-2 bg-[rgba(0,0,0,0.3)] rounded">
                     {tx}
                   </li>
                 ))}
@@ -85,14 +87,14 @@ const LitecoinWallet = () => {
       )}
 
       {wallet && (
-        <div className="mt-10 bg-[rgba(26,26,26,0.8)] backdrop-blur-[20px] border border-[rgba(255,255,255,0.2)] rounded-[20px] p-12 relative overflow-hidden text-center before:absolute before:inset-0 before:bg-gradient-to-br before:from-[rgba(128,128,128,0.05)] before:to-[rgba(8,8,8,0.05)] before:opacity-100">
-          <div className="relative z-[1] mb-8 flex gap-3 flex-wrap">
+        <div className="mt-10 bg-[rgba(26,26,26,0.8)] backdrop-blur-[20px] border border-[rgba(255,255,255,0.2)] rounded-[20px] p-12 relative overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-br before:from-[rgba(128,128,128,0.05)] before:to-[rgba(8,8,8,0.05)] before:opacity-100">
+          <div className="relative z-[1] mb-8 flex gap-4 flex-wrap">
             <input
               type="text"
               value={sendForm.address}
               onChange={(e) => setSendForm(prev => ({ ...prev, address: e.target.value }))}
               placeholder="Recipient LTC Address"
-              className="flex-1 px-5 py-4 bg-[rgba(15,15,15,0.8)] border-2 border-[rgba(234,234,234,0.3)] rounded-2xl text-white text-base font-medium font-sans transition-all duration-300 backdrop-blur-[10px] min-w-0 focus:outline-none focus:border-[#c7c7c7] focus:shadow-[0_0_0_4px_rgba(133,133,133,0.1)] focus:scale-[1.02] placeholder:text-[#717171] placeholder:opacity-70"
+              className="flex-1 min-w-[300px] px-6 py-4 bg-[rgba(15,15,15,0.8)] border-2 border-[rgba(234,234,234,0.3)] rounded-2xl text-white text-base font-medium font-sans transition-all duration-300 backdrop-blur-[10px] focus:outline-none focus:border-[#c7c7c7] focus:shadow-[0_0_0_4px_rgba(133,133,133,0.1)] focus:scale-[1.02] placeholder:text-[#717171] placeholder:opacity-70"
             />
             
             <input
@@ -100,22 +102,22 @@ const LitecoinWallet = () => {
               value={sendForm.amount}
               onChange={(e) => setSendForm(prev => ({ ...prev, amount: e.target.value }))}
               placeholder="Amount in LTC"
-              className="flex-1 px-5 py-4 bg-[rgba(15,15,15,0.8)] border-2 border-[rgba(234,234,234,0.3)] rounded-2xl text-white text-base font-medium font-sans transition-all duration-300 backdrop-blur-[10px] min-w-0 focus:outline-none focus:border-[#c7c7c7] focus:shadow-[0_0_0_4px_rgba(133,133,133,0.1)] focus:scale-[1.02] placeholder:text-[#717171] placeholder:opacity-70"
+              className="flex-1 min-w-[200px] px-6 py-4 bg-[rgba(15,15,15,0.8)] border-2 border-[rgba(234,234,234,0.3)] rounded-2xl text-white text-base font-medium font-sans transition-all duration-300 backdrop-blur-[10px] focus:outline-none focus:border-[#c7c7c7] focus:shadow-[0_0_0_4px_rgba(133,133,133,0.1)] focus:scale-[1.02] placeholder:text-[#717171] placeholder:opacity-70"
             />
           </div>
           
-          <div className="flex gap-4 justify-center">
+          <div className="flex gap-4 justify-center relative z-[1]">
             <button
               onClick={sendLTC}
-              className="px-8 py-4 bg-gradient-to-br from-[#838383] to-[#4c4c4c] border-none rounded-2xl text-white text-lg font-bold cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] relative overflow-hidden shadow-[0_12px_24px_rgba(217,217,217,0.3)] hover:transform hover:translate-y-[-2px] hover:scale-[1.02] hover:shadow-[0_16px_32px_rgba(202,202,202,0.4)] active:transform active:translate-y-0 active:scale-[0.98] flex items-center justify-center gap-3 relative z-[1]"
+              className="px-10 py-4 bg-gradient-to-br from-[#838383] to-[#4c4c4c] border-none rounded-2xl text-white text-lg font-bold cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] relative overflow-hidden shadow-[0_12px_24px_rgba(217,217,217,0.3)] hover:transform hover:translate-y-[-2px] hover:scale-[1.02] hover:shadow-[0_16px_32px_rgba(202,202,202,0.4)] active:transform active:translate-y-0 active:scale-[0.98] flex items-center justify-center gap-3"
             >
               <Send className="w-5 h-5 transition-transform duration-300 hover:scale-110" />
               Send LTC
             </button>
             
-            <button className="w-[33%] px-8 py-[15px] bg-gradient-to-br from-[#4c4c4c] to-[#2c2c2c] border border-[rgba(255,255,255,0.5)] rounded-2xl text-white text-sm font-bold cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] relative overflow-hidden shadow-[0_12px_24px_rgba(217,217,217,0.3)] hover:transform hover:translate-y-[-2px] hover:scale-[1.02] hover:shadow-[0_16px_32px_rgba(202,202,202,0.4)] active:transform active:translate-y-0 active:scale-[0.98] inline-flex items-center justify-center gap-3 relative z-[1]">
+            <button className="px-8 py-4 bg-gradient-to-br from-[#4c4c4c] to-[#2c2c2c] border border-[rgba(255,255,255,0.5)] rounded-2xl text-white text-sm font-bold cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] relative overflow-hidden shadow-[0_12px_24px_rgba(217,217,217,0.3)] hover:transform hover:translate-y-[-2px] hover:scale-[1.02] hover:shadow-[0_16px_32px_rgba(202,202,202,0.4)] active:transform active:translate-y-0 active:scale-[0.98] flex items-center justify-center gap-3">
               <Key className="w-4 h-4 transition-transform duration-300 hover:scale-110" />
-              Get My Wallet Private Infos
+              Get Private Info
             </button>
           </div>
         </div>

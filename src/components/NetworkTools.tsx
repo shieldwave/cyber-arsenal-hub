@@ -1,179 +1,100 @@
 
 import { useState } from 'react';
-import { Search, Globe, Server } from 'lucide-react';
+import { Search } from 'lucide-react';
 
 const NetworkTools = () => {
-  const [portScanTarget, setPortScanTarget] = useState('');
-  const [whoisDomain, setWhoisDomain] = useState('');
-  const [dnsTarget, setDnsTarget] = useState('');
+  const [ipTarget, setIpTarget] = useState('');
   const [results, setResults] = useState<string>('');
+  const [isScanning, setIsScanning] = useState(false);
 
-  const simulatePortScan = () => {
-    if (!portScanTarget) return;
+  const simulateIPScan = () => {
+    if (!ipTarget) return;
     
-    setResults('Scanning ports on ' + portScanTarget + '...\n\n');
-    
-    setTimeout(() => {
-      const mockResults = `
-Port Scan Results for ${portScanTarget}:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-PORT     STATE    SERVICE
-22/tcp   open     ssh
-80/tcp   open     http
-443/tcp  open     https
-3306/tcp closed   mysql
-5432/tcp closed   postgresql
-
-Scan completed in 2.34 seconds
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`;
-      
-      setResults(mockResults);
-    }, 2000);
-  };
-
-  const simulateWhoisLookup = () => {
-    if (!whoisDomain) return;
-    
-    setResults('Looking up WHOIS information for ' + whoisDomain + '...\n\n');
+    setIsScanning(true);
+    setResults('Scanning ' + ipTarget + '...\n\n');
     
     setTimeout(() => {
       const mockResults = `
-WHOIS Information for ${whoisDomain}:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Advanced IP Scan Results for ${ipTarget}:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Domain Name: ${whoisDomain.toUpperCase()}
-Registry Domain ID: D123456789-LROR
+🌍 GEOLOCATION INFO
+Country: United States
+Region: California
+City: Los Angeles
+ISP: Cloudflare Inc.
+Organization: Cloudflare
+Coordinates: 34.0522, -118.2437
+
+🔍 NETWORK DETAILS
+IP Type: IPv4
+Reverse DNS: server.example.com
+ASN: AS13335 Cloudflare, Inc.
+Timezone: America/Los_Angeles
+
+🛡️ SECURITY ANALYSIS
+VPN/Proxy: No
+Tor Exit Node: No
+Known Threats: None detected
+Abuse Confidence: 0%
+
+📊 PORT SCAN RESULTS
+Port 22/tcp: closed (SSH)
+Port 80/tcp: open (HTTP)
+Port 443/tcp: open (HTTPS)
+Port 3306/tcp: closed (MySQL)
+Port 5432/tcp: closed (PostgreSQL)
+
+🌐 DOMAIN INFORMATION
+Domain: example.com
 Registrar: Example Registrar LLC
-Creation Date: 2020-01-15T12:34:56Z
-Updated Date: 2023-01-15T12:34:56Z
-Registry Expiry Date: 2025-01-15T12:34:56Z
+Creation Date: 2020-01-15
+Expiry Date: 2025-01-15
 
-Registrant Organization: Example Corp
-Registrant Country: US
-Administrative Contact: admin@${whoisDomain}
-Technical Contact: tech@${whoisDomain}
-
-Name Servers:
-  ns1.example.com
-  ns2.example.com
-
-Status: clientTransferProhibited
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`;
+Scan completed in 3.21 seconds
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`;
       
       setResults(mockResults);
-    }, 1500);
-  };
-
-  const simulateDnsLookup = () => {
-    if (!dnsTarget) return;
-    
-    setResults('Performing DNS lookup for ' + dnsTarget + '...\n\n');
-    
-    setTimeout(() => {
-      const mockResults = `
-DNS Lookup Results for ${dnsTarget}:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-A Records:
-  ${dnsTarget}    IN A    192.168.1.100
-  ${dnsTarget}    IN A    192.168.1.101
-
-AAAA Records:
-  ${dnsTarget}    IN AAAA 2001:db8::1
-
-MX Records:
-  ${dnsTarget}    IN MX   10 mail.${dnsTarget}
-  ${dnsTarget}    IN MX   20 mail2.${dnsTarget}
-
-NS Records:
-  ${dnsTarget}    IN NS    ns1.${dnsTarget}
-  ${dnsTarget}    IN NS    ns2.${dnsTarget}
-
-TXT Records:
-  ${dnsTarget}    IN TXT   "v=spf1 include:_spf.google.com ~all"
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`;
-      
-      setResults(mockResults);
-    }, 1200);
+      setIsScanning(false);
+    }, 3000);
   };
 
   return (
-    <div className="space-y-8">
-      {/* Port Scanner */}
-      <div className="cyber-card">
-        <div className="flex items-center gap-3 mb-4">
-          <Server className="w-6 h-6 text-cyber-accent" />
-          <h3 className="text-xl font-semibold">Port Scanner</h3>
-        </div>
-        <div className="space-y-4">
+    <div className="max-w-[1000px] mx-auto px-5">
+      <div className="text-center mb-15">
+        <h2 className="text-[42px] font-extrabold bg-gradient-to-br from-white to-[#b0b0b0] bg-clip-text text-transparent mb-3 tracking-tight">
+          Advanced IP Scanner
+        </h2>
+        <p className="text-[#b8b8b8] text-lg font-medium">Advanced search across multiple websites and APIs</p>
+      </div>
+      
+      <div className="bg-[rgba(26,26,26,0.8)] backdrop-blur-[20px] border border-[rgba(255,255,255,0.2)] rounded-[20px] p-12 relative overflow-hidden transition-all duration-[0.4s] ease-[cubic-bezier(0.4,0,0.2,1)] hover:border-[rgba(255,255,255,0.4)] hover:transform hover:translate-y-[-4px] hover:shadow-[0_20px_40px_rgba(121,121,121,0.15)] before:absolute before:inset-0 before:bg-gradient-to-br before:from-[rgba(128,128,128,0.05)] before:to-[rgba(8,8,8,0.05)] before:opacity-100">
+        <div className="relative z-[1] mb-8">
           <input
             type="text"
-            placeholder="Enter target IP or domain (e.g., 192.168.1.1)"
-            value={portScanTarget}
-            onChange={(e) => setPortScanTarget(e.target.value)}
-            className="terminal-input w-full px-4 py-2 rounded-md"
+            value={ipTarget}
+            onChange={(e) => setIpTarget(e.target.value)}
+            placeholder="Enter IP address or domain..."
+            className="w-full px-6 py-5 bg-[rgba(15,15,15,0.8)] border-2 border-[rgba(234,234,234,0.3)] rounded-2xl text-white text-lg font-medium font-sans transition-all duration-300 backdrop-blur-[10px] focus:outline-none focus:border-[#c7c7c7] focus:shadow-[0_0_0_4px_rgba(133,133,133,0.1)] focus:scale-[1.02] placeholder:text-[#717171] placeholder:opacity-70"
           />
-          <button
-            onClick={simulatePortScan}
-            className="cyber-button px-6 py-2 rounded-md hover:shadow-lg"
-          >
-            Scan Ports
-          </button>
         </div>
+        
+        <button
+          onClick={simulateIPScan}
+          disabled={isScanning}
+          className="w-full px-8 py-5 bg-gradient-to-br from-[#838383] to-[#4c4c4c] border-none rounded-2xl text-white text-lg font-bold cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] relative overflow-hidden shadow-[0_12px_24px_rgba(217,217,217,0.3)] hover:transform hover:translate-y-[-2px] hover:scale-[1.02] hover:shadow-[0_16px_32px_rgba(202,202,202,0.4)] active:transform active:translate-y-0 active:scale-[0.98] flex items-center justify-center gap-3 relative z-[1] disabled:opacity-60 disabled:cursor-not-allowed"
+        >
+          <Search className="w-5 h-5 transition-transform duration-300 hover:scale-110" />
+          {isScanning ? 'Scanning...' : 'Scan'}
+        </button>
       </div>
 
-      {/* WHOIS Lookup */}
-      <div className="cyber-card">
-        <div className="flex items-center gap-3 mb-4">
-          <Globe className="w-6 h-6 text-cyber-accent" />
-          <h3 className="text-xl font-semibold">WHOIS Lookup</h3>
-        </div>
-        <div className="space-y-4">
-          <input
-            type="text"
-            placeholder="Enter domain name (e.g., example.com)"
-            value={whoisDomain}
-            onChange={(e) => setWhoisDomain(e.target.value)}
-            className="terminal-input w-full px-4 py-2 rounded-md"
-          />
-          <button
-            onClick={simulateWhoisLookup}
-            className="cyber-button px-6 py-2 rounded-md hover:shadow-lg"
-          >
-            Lookup WHOIS
-          </button>
-        </div>
-      </div>
-
-      {/* DNS Lookup */}
-      <div className="cyber-card">
-        <div className="flex items-center gap-3 mb-4">
-          <Search className="w-6 h-6 text-cyber-accent" />
-          <h3 className="text-xl font-semibold">DNS Lookup</h3>
-        </div>
-        <div className="space-y-4">
-          <input
-            type="text"
-            placeholder="Enter domain name (e.g., google.com)"
-            value={dnsTarget}
-            onChange={(e) => setDnsTarget(e.target.value)}
-            className="terminal-input w-full px-4 py-2 rounded-md"
-          />
-          <button
-            onClick={simulateDnsLookup}
-            className="cyber-button px-6 py-2 rounded-md hover:shadow-lg"
-          >
-            DNS Lookup
-          </button>
-        </div>
-      </div>
-
-      {/* Results Display */}
       {results && (
-        <div className="cyber-card">
-          <h3 className="text-xl font-semibold mb-4 text-cyber-accent">Results</h3>
-          <pre className="bg-cyber-bg p-4 rounded border border-cyber-border text-sm overflow-x-auto whitespace-pre-wrap">
+        <div className="mt-10 bg-[rgba(26,26,26,0.8)] backdrop-blur-[20px] border border-[rgba(255,255,255,0.2)] rounded-[20px] p-8 relative overflow-hidden before:absolute before:inset-0 before:bg-gradient-to-br before:from-[rgba(64,64,64,0.05)] before:to-[rgba(255,255,255,0.05)] before:opacity-100">
+          <div className="flex justify-between items-center mb-6 relative z-[1]">
+            <h3 className="text-2xl font-bold text-white">Scan Results:</h3>
+          </div>
+          <pre className="bg-[#111] text-[#ccc] p-6 rounded-xl overflow-auto max-h-[600px] text-sm whitespace-pre-wrap relative z-[1] border border-[rgba(255,255,255,0.1)]">
             {results}
           </pre>
         </div>

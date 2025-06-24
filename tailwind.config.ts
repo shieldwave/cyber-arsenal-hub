@@ -101,6 +101,16 @@ export default {
 						transform: 'scale(1.05)', 
 						opacity: '0.9' 
 					}
+				},
+				slideIn: {
+					from: {
+						opacity: '0',
+						transform: 'translateY(-10px)'
+					},
+					to: {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
 				}
 			},
 			animation: {
@@ -108,7 +118,8 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				glow: 'glow 2s ease-in-out infinite alternate',
 				logoFloat: 'logoFloat 6s ease-in-out infinite',
-				pulse: 'pulse 2s ease-in-out infinite'
+				pulse: 'pulse 2s ease-in-out infinite',
+				slideIn: 'slideIn 0.3s ease'
 			},
 			fontFamily: {
 				mono: ['JetBrains Mono', 'Consolas', 'Monaco', 'Courier New', 'monospace'],
