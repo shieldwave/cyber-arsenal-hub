@@ -86,7 +86,7 @@ const HashTools = () => {
 
           <button
             onClick={generateHashes}
-            className="w-full px-8 py-5 bg-gradient-to-br from-[#838383] to-[#4c4c4c] border-none rounded-2xl text-white text-lg font-bold cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] relative overflow-hidden shadow-[0_12px_24px_rgba(217,217,217,0.3)] hover:transform hover:translate-y-[-2px] hover:scale-[1.02] hover:shadow-[0_16px_32px_rgba(202,202,202,0.4)] active:transform active:translate-y-0 active:scale-[0.98] flex items-center justify-center gap-3"
+            className="cyber-button px-4 py-2 rounded-md flex items-center gap-2 w-full justify-center"
           >
             Generate Hashes
           </button>
@@ -108,7 +108,7 @@ const HashTools = () => {
                   <label className="text-sm font-medium text-white">MD5</label>
                   <button
                     onClick={() => copyHash(hashes.md5)}
-                    className="text-white hover:underline text-sm flex items-center gap-1"
+                    className="cyber-button px-2 py-1 rounded text-xs flex items-center gap-1"
                   >
                     <Copy className="w-3 h-3" />
                     Copy
@@ -126,7 +126,7 @@ const HashTools = () => {
                   <label className="text-sm font-medium text-white">SHA-1</label>
                   <button
                     onClick={() => copyHash(hashes.sha1)}
-                    className="text-white hover:underline text-sm flex items-center gap-1"
+                    className="cyber-button px-2 py-1 rounded text-xs flex items-center gap-1"
                   >
                     <Copy className="w-3 h-3" />
                     Copy
@@ -144,7 +144,7 @@ const HashTools = () => {
                   <label className="text-sm font-medium text-white">SHA-256</label>
                   <button
                     onClick={() => copyHash(hashes.sha256)}
-                    className="text-white hover:underline text-sm flex items-center gap-1"
+                    className="cyber-button px-2 py-1 rounded text-xs flex items-center gap-1"
                   >
                     <Copy className="w-3 h-3" />
                     Copy

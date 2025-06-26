@@ -74,8 +74,8 @@ const WebsiteCloner = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 relative z-[1]">
           <button
             onClick={() => handleOptionChange('downloadJS')}
-            className={`px-6 py-4 bg-[rgba(15,15,15,0.8)] border-2 border-[rgba(234,234,234,0.3)] rounded-2xl text-white font-medium transition-all duration-300 backdrop-blur-[10px] hover:border-[#c7c7c7] hover:scale-[1.02] flex items-center justify-center gap-2 ${
-              options.downloadJS ? 'border-[#c7c7c7] bg-[rgba(255,255,255,0.1)]' : ''
+            className={`cyber-button px-4 py-2 rounded-md flex items-center justify-center gap-2 ${
+              options.downloadJS ? 'bg-cyber-hover border-cyber-accent text-cyber-accent' : ''
             }`}
           >
             <Code className="w-4 h-4" />
@@ -84,8 +84,8 @@ const WebsiteCloner = () => {
           
           <button
             onClick={() => handleOptionChange('playwrightPreload')}
-            className={`px-6 py-4 bg-[rgba(15,15,15,0.8)] border-2 border-[rgba(234,234,234,0.3)] rounded-2xl text-white font-medium transition-all duration-300 backdrop-blur-[10px] hover:border-[#c7c7c7] hover:scale-[1.02] flex items-center justify-center gap-2 ${
-              options.playwrightPreload ? 'border-[#c7c7c7] bg-[rgba(255,255,255,0.1)]' : ''
+            className={`cyber-button px-4 py-2 rounded-md flex items-center justify-center gap-2 ${
+              options.playwrightPreload ? 'bg-cyber-hover border-cyber-accent text-cyber-accent' : ''
             }`}
           >
             <Code className="w-4 h-4" />
@@ -95,9 +95,9 @@ const WebsiteCloner = () => {
         
         <button
           onClick={handleClone}
-          className="w-full px-8 py-5 bg-gradient-to-br from-[#838383] to-[#4c4c4c] border-none rounded-2xl text-white text-lg font-bold cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] relative overflow-hidden shadow-[0_12px_24px_rgba(217,217,217,0.3)] hover:transform hover:translate-y-[-2px] hover:scale-[1.02] hover:shadow-[0_16px_32px_rgba(202,202,202,0.4)] active:transform active:translate-y-0 active:scale-[0.98] flex items-center justify-center gap-3 relative z-[1]"
+          className="cyber-button px-4 py-2 rounded-md flex items-center gap-2 w-full justify-center relative z-[1]"
         >
-          <Code className="w-5 h-5 transition-transform duration-300 hover:scale-110" />
+          <Code className="w-4 h-4" />
           Clone
         </button>
       </div>
@@ -110,8 +110,8 @@ const WebsiteCloner = () => {
           <p className="text-white mb-4 relative z-[1]">{status}</p>
           
           {downloadReady && (
-            <button className="px-8 py-4 bg-gradient-to-br from-[#838383] to-[#4c4c4c] border-none rounded-2xl text-white text-lg font-bold cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] relative overflow-hidden shadow-[0_12px_24px_rgba(217,217,217,0.3)] hover:transform hover:translate-y-[-2px] hover:scale-[1.02] hover:shadow-[0_16px_32px_rgba(202,202,202,0.4)] active:transform active:translate-y-0 active:scale-[0.98] flex items-center justify-center gap-3 relative z-[1]">
-              <Download className="w-5 h-5 transition-transform duration-300 hover:scale-110" />
+            <button className="cyber-button px-4 py-2 rounded-md flex items-center gap-2 relative z-[1]">
+              <Download className="w-4 h-4" />
               Download ZIP
             </button>
           )}

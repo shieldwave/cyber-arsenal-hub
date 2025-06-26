@@ -60,9 +60,9 @@ Note: This is a demo interface. Connect to your backend API for real vulnerabili
         <button
           onClick={handleScan}
           disabled={isScanning}
-          className="w-full px-8 py-5 bg-gradient-to-br from-[#838383] to-[#4c4c4c] border-none rounded-2xl text-white text-lg font-bold cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] relative overflow-hidden shadow-[0_12px_24px_rgba(217,217,217,0.3)] hover:transform hover:translate-y-[-2px] hover:scale-[1.02] hover:shadow-[0_16px_32px_rgba(202,202,202,0.4)] active:transform active:translate-y-0 active:scale-[0.98] flex items-center justify-center gap-3 relative z-[1]"
+          className="cyber-button px-4 py-2 rounded-md flex items-center gap-2 w-full justify-center disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          <Scan className="w-5 h-5 transition-transform duration-300 hover:scale-110" />
+          <Scan className="w-4 h-4" />
           {isScanning ? 'Scanning...' : 'Scan'}
         </button>
       </div>
