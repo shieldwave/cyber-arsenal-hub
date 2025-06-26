@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
-  const [loginData, setLoginData] = useState({
+  const [formData, setFormData] = useState({
     username: '',
     password: '',
     captcha: ''
@@ -14,18 +14,18 @@ const Login = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (loginData.captcha !== captchaText) {
+    if (formData.captcha !== captchaText) {
       setStatusMessage({ text: 'Invalid captcha. Please try again.', type: 'error' });
       regenerateCaptcha();
       return;
     }
     
-    setStatusMessage({ text: 'Logged in successfully!', type: 'success' });
-    console.log('Login attempt:', loginData);
+    setStatusMessage({ text: 'Logged in!', type: 'success' });
+    console.log('Login attempt:', formData);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLoginData(prev => ({
+    setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
     }));
@@ -56,12 +56,8 @@ const Login = () => {
           <div className="w-16 h-16 bg-gradient-to-br from-[#838383] to-[#4c4c4c] rounded-lg flex items-center justify-center text-3xl font-bold text-white mx-auto mb-4 shadow-[0_12px_24px_rgba(255,255,255,0.3)] animate-logoFloat">
             O
           </div>
-          <h1 className="text-3xl font-bold bg-gradient-to-br from-white to-[#b0b0b0] bg-clip-text text-transparent mb-2">
-            Login Override_
-          </h1>
-          <p className="text-[#bcbcbc] font-medium">
-            Access your cybersecurity toolkit
-          </p>
+          <h1 className="text-3xl font-bold bg-gradient-to-br from-white to-[#b0b0b0] bg-clip-text text-transparent mb-2">Login Override_</h1>
+          <p className="text-[#bcbcbc] font-medium">Login to your account</p>
         </div>
 
         <div className="bg-[rgba(26,26,26,0.9)] backdrop-blur-[20px] border border-[rgba(255,255,255,0.3)] rounded-[24px] p-10 relative overflow-hidden transition-all duration-[0.4s] ease-[cubic-bezier(0.4,0,0.2,1)] hover:border-[rgba(255,255,255,0.6)] hover:transform hover:translate-y-[-8px] hover:scale-[1.02] hover:shadow-[0_30px_60px_rgba(137,137,137,0.2)]">
@@ -72,7 +68,7 @@ const Login = () => {
               <input
                 type="text"
                 name="username"
-                value={loginData.username}
+                value={formData.username}
                 onChange={handleChange}
                 placeholder="Username"
                 required
@@ -84,7 +80,7 @@ const Login = () => {
               <input
                 type="password"
                 name="password"
-                value={loginData.password}
+                value={formData.password}
                 onChange={handleChange}
                 placeholder="Password"
                 required
@@ -103,13 +99,24 @@ const Login = () => {
               <input
                 type="text"
                 name="captcha"
-                value={loginData.captcha}
+                value={formData.captcha}
                 onChange={handleChange}
                 placeholder="Enter the text above"
                 required
                 className="w-full px-6 py-4 bg-[rgba(15,15,15,0.8)] border-2 border-[rgba(255,255,255,0.3)] rounded-2xl text-white text-lg font-medium transition-all duration-300 backdrop-blur-[10px] focus:outline-none focus:border-[#c7c7c7] focus:shadow-[0_0_0_4px_rgba(160,160,160,0.1)] focus:scale-[1.02] placeholder:text-[#717171] placeholder:opacity-70"
               />
             </div>
+
+            {statusMessage.text && (
+              <div className={`flex items-center gap-3 px-5 py-4 rounded-xl animate-[slideIn_0.3s_ease] ${
+                statusMessage.type === 'success' 
+                  ? 'bg-[rgba(34,197,94,0.1)] border border-[rgba(34,197,94,0.3)] text-[#22c55e]' 
+                  : 'bg-[rgba(239,68,68,0.1)] border border-[rgba(239,68,68,0.3)] text-[#ef4444]'
+              }`}>
+                <div className="w-5 h-5">!</div>
+                <div className="font-medium">{statusMessage.text}</div>
+              </div>
+            )}
 
             <button
               type="submit"
@@ -119,30 +126,12 @@ const Login = () => {
             </button>
           </form>
 
-          {statusMessage.text && (
-            <div className={`mt-4 flex items-center gap-3 px-5 py-4 rounded-xl animate-[slideIn_0.3s_ease] relative z-[1] ${
-              statusMessage.type === 'success' 
-                ? 'bg-[rgba(34,197,94,0.1)] border border-[rgba(34,197,94,0.3)] text-[#22c55e]' 
-                : 'bg-[rgba(239,68,68,0.1)] border border-[rgba(239,68,68,0.3)] text-[#ef4444]'
-            }`}>
-              <div className="w-5 h-5">!</div>
-              <div className="font-medium">{statusMessage.text}</div>
-            </div>
-          )}
-
-          <div className="text-center mt-6 space-y-2 relative z-[1]">
-            <p className="text-[#bcbcbc]">
-              Don't have an account?{' '}
-              <Link to="/register" className="text-white hover:underline font-medium">
-                Register here
-              </Link>
-            </p>
-            <p className="text-[#bcbcbc]">
-              <Link to="/" className="text-white hover:underline font-medium">
-                Back to Dashboard
-              </Link>
-            </p>
-          </div>
+          <p className="text-center mt-6 text-[#bcbcbc] relative z-[1]">
+            Don't have an account?{' '}
+            <Link to="/register" className="text-white hover:underline font-medium">
+              Register here
+            </Link>
+          </p>
         </div>
       </div>
     </div>

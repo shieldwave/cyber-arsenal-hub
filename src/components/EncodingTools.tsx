@@ -73,24 +73,24 @@ const EncodingTools = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 relative z-[1]">
           <button
             onClick={() => setSelectedTool('base64')}
-            className={`cyber-button px-4 py-2 rounded-md text-center ${
-              selectedTool === 'base64' ? 'bg-cyber-hover border-cyber-accent text-cyber-accent' : ''
+            className={`px-6 py-4 bg-[rgba(15,15,15,0.8)] border-2 border-[rgba(234,234,234,0.3)] rounded-2xl text-white font-medium transition-all duration-300 backdrop-blur-[10px] hover:border-[#c7c7c7] hover:scale-[1.02] text-center ${
+              selectedTool === 'base64' ? 'border-[#c7c7c7] bg-[rgba(255,255,255,0.1)]' : ''
             }`}
           >
             Base64
           </button>
           <button
             onClick={() => setSelectedTool('url')}
-            className={`cyber-button px-4 py-2 rounded-md text-center ${
-              selectedTool === 'url' ? 'bg-cyber-hover border-cyber-accent text-cyber-accent' : ''
+            className={`px-6 py-4 bg-[rgba(15,15,15,0.8)] border-2 border-[rgba(234,234,234,0.3)] rounded-2xl text-white font-medium transition-all duration-300 backdrop-blur-[10px] hover:border-[#c7c7c7] hover:scale-[1.02] text-center ${
+              selectedTool === 'url' ? 'border-[#c7c7c7] bg-[rgba(255,255,255,0.1)]' : ''
             }`}
           >
             URL Encoding
           </button>
           <button
             onClick={() => setSelectedTool('html')}
-            className={`cyber-button px-4 py-2 rounded-md text-center ${
-              selectedTool === 'html' ? 'bg-cyber-hover border-cyber-accent text-cyber-accent' : ''
+            className={`px-6 py-4 bg-[rgba(15,15,15,0.8)] border-2 border-[rgba(234,234,234,0.3)] rounded-2xl text-white font-medium transition-all duration-300 backdrop-blur-[10px] hover:border-[#c7c7c7] hover:scale-[1.02] text-center ${
+              selectedTool === 'html' ? 'border-[#c7c7c7] bg-[rgba(255,255,255,0.1)]' : ''
             }`}
           >
             HTML Encoding
@@ -100,16 +100,16 @@ const EncodingTools = () => {
         <div className="flex gap-4 mb-6 relative z-[1]">
           <button
             onClick={() => setOperation('encode')}
-            className={`cyber-button px-4 py-2 rounded-md ${
-              operation === 'encode' ? 'bg-cyber-hover border-cyber-accent text-cyber-accent' : ''
+            className={`px-6 py-3 bg-[rgba(15,15,15,0.8)] border-2 border-[rgba(234,234,234,0.3)] rounded-2xl text-white font-medium transition-all duration-300 backdrop-blur-[10px] hover:border-[#c7c7c7] hover:scale-[1.02] ${
+              operation === 'encode' ? 'border-[#c7c7c7] bg-[rgba(255,255,255,0.1)]' : ''
             }`}
           >
             Encode
           </button>
           <button
             onClick={() => setOperation('decode')}
-            className={`cyber-button px-4 py-2 rounded-md ${
-              operation === 'decode' ? 'bg-cyber-hover border-cyber-accent text-cyber-accent' : ''
+            className={`px-6 py-3 bg-[rgba(15,15,15,0.8)] border-2 border-[rgba(234,234,234,0.3)] rounded-2xl text-white font-medium transition-all duration-300 backdrop-blur-[10px] hover:border-[#c7c7c7] hover:scale-[1.02] ${
+              operation === 'decode' ? 'border-[#c7c7c7] bg-[rgba(255,255,255,0.1)]' : ''
             }`}
           >
             Decode
@@ -130,9 +130,9 @@ const EncodingTools = () => {
           <div className="flex justify-center">
             <button
               onClick={processText}
-              className="cyber-button px-4 py-2 rounded-md flex items-center gap-2"
+              className="px-8 py-4 bg-gradient-to-br from-[#838383] to-[#4c4c4c] border-none rounded-2xl text-white text-lg font-bold cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] relative overflow-hidden shadow-[0_12px_24px_rgba(217,217,217,0.3)] hover:transform hover:translate-y-[-2px] hover:scale-[1.02] hover:shadow-[0_16px_32px_rgba(202,202,202,0.4)] active:transform active:translate-y-0 active:scale-[0.98] flex items-center justify-center gap-3"
             >
-              <ArrowRightLeft className="w-4 h-4" />
+              <ArrowRightLeft className="w-5 h-5 transition-transform duration-300 hover:scale-110" />
               {operation === 'encode' ? 'Encode' : 'Decode'}
             </button>
           </div>
@@ -143,7 +143,7 @@ const EncodingTools = () => {
               {outputText && (
                 <button
                   onClick={copyToClipboard}
-                  className="cyber-button px-2 py-1 rounded text-xs"
+                  className="text-white text-sm hover:underline"
                 >
                   Copy to Clipboard
                 </button>

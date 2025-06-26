@@ -41,9 +41,9 @@ const LitecoinWallet = () => {
       <div className="bg-[rgba(26,26,26,0.8)] backdrop-blur-[20px] border border-[rgba(255,255,255,0.2)] rounded-[20px] p-12 relative overflow-hidden transition-all duration-[0.4s] ease-[cubic-bezier(0.4,0,0.2,1)] hover:border-[rgba(255,255,255,0.4)] hover:transform hover:translate-y-[-4px] hover:shadow-[0_20px_40px_rgba(121,121,121,0.15)] before:absolute before:inset-0 before:bg-gradient-to-br before:from-[rgba(128,128,128,0.05)] before:to-[rgba(8,8,8,0.05)] before:opacity-100">
         <button
           onClick={createWallet}
-          className="cyber-button px-4 py-2 rounded-md flex items-center gap-2 w-full justify-center"
+          className="w-full px-8 py-5 bg-gradient-to-br from-[#838383] to-[#4c4c4c] border-none rounded-2xl text-white text-lg font-bold cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] relative overflow-hidden shadow-[0_12px_24px_rgba(217,217,217,0.3)] hover:transform hover:translate-y-[-2px] hover:scale-[1.02] hover:shadow-[0_16px_32px_rgba(202,202,202,0.4)] active:transform active:translate-y-0 active:scale-[0.98] flex items-center justify-center gap-3 relative z-[1]"
         >
-          <Key className="w-4 h-4" />
+          <Key className="w-5 h-5 transition-transform duration-300 hover:scale-110" />
           Create Wallet
         </button>
       </div>
@@ -109,14 +109,14 @@ const LitecoinWallet = () => {
           <div className="flex gap-4 justify-center relative z-[1]">
             <button
               onClick={sendLTC}
-              className="cyber-button px-4 py-2 rounded-md flex items-center gap-2"
+              className="px-10 py-4 bg-gradient-to-br from-[#838383] to-[#4c4c4c] border-none rounded-2xl text-white text-lg font-bold cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] relative overflow-hidden shadow-[0_12px_24px_rgba(217,217,217,0.3)] hover:transform hover:translate-y-[-2px] hover:scale-[1.02] hover:shadow-[0_16px_32px_rgba(202,202,202,0.4)] active:transform active:translate-y-0 active:scale-[0.98] flex items-center justify-center gap-3"
             >
-              <Send className="w-4 h-4" />
+              <Send className="w-5 h-5 transition-transform duration-300 hover:scale-110" />
               Send LTC
             </button>
             
-            <button className="cyber-button px-4 py-2 rounded-md flex items-center gap-2">
-              <Key className="w-4 h-4" />
+            <button className="px-8 py-4 bg-gradient-to-br from-[#4c4c4c] to-[#2c2c2c] border border-[rgba(255,255,255,0.5)] rounded-2xl text-white text-sm font-bold cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] relative overflow-hidden shadow-[0_12px_24px_rgba(217,217,217,0.3)] hover:transform hover:translate-y-[-2px] hover:scale-[1.02] hover:shadow-[0_16px_32px_rgba(202,202,202,0.4)] active:transform active:translate-y-0 active:scale-[0.98] flex items-center justify-center gap-3">
+              <Key className="w-4 h-4 transition-transform duration-300 hover:scale-110" />
               Get Private Info
             </button>
           </div>
