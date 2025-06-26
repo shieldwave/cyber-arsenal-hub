@@ -88,143 +88,166 @@ const Auth = () => {
           </p>
         </div>
 
-        {/* Toggle buttons */}
-        <div className="flex mb-6 bg-[rgba(26,26,26,0.8)] rounded-xl p-1">
-          <button
-            onClick={() => setIsLogin(true)}
-            className={`flex-1 py-2 px-4 rounded-lg transition-all duration-300 ${
-              isLogin
-                ? 'bg-white text-black font-semibold'
-                : 'text-white hover:bg-[rgba(255,255,255,0.1)]'
+        {/* Toggle buttons with smooth sliding indicator */}
+        <div className="relative mb-6 bg-[rgba(26,26,26,0.8)] rounded-xl p-1">
+          {/* Sliding indicator */}
+          <div 
+            className={`absolute top-1 bottom-1 w-1/2 bg-white rounded-lg transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${
+              isLogin ? 'translate-x-0' : 'translate-x-full'
             }`}
-          >
-            Login
-          </button>
-          <button
-            onClick={() => setIsLogin(false)}
-            className={`flex-1 py-2 px-4 rounded-lg transition-all duration-300 ${
-              !isLogin
-                ? 'bg-white text-black font-semibold'
-                : 'text-white hover:bg-[rgba(255,255,255,0.1)]'
-            }`}
-          >
-            Register
-          </button>
+          ></div>
+          
+          <div className="relative flex">
+            <button
+              onClick={() => setIsLogin(true)}
+              className={`flex-1 py-2 px-4 rounded-lg transition-all duration-500 z-10 ${
+                isLogin
+                  ? 'text-black font-semibold'
+                  : 'text-white hover:text-gray-300'
+              }`}
+            >
+              Login
+            </button>
+            <button
+              onClick={() => setIsLogin(false)}
+              className={`flex-1 py-2 px-4 rounded-lg transition-all duration-500 z-10 ${
+                !isLogin
+                  ? 'text-black font-semibold'
+                  : 'text-white hover:text-gray-300'
+              }`}
+            >
+              Register
+            </button>
+          </div>
         </div>
 
         <div className="bg-[rgba(26,26,26,0.9)] backdrop-blur-[20px] border border-[rgba(255,255,255,0.3)] rounded-[24px] p-10 relative overflow-hidden transition-all duration-[0.4s] ease-[cubic-bezier(0.4,0,0.2,1)] hover:border-[rgba(255,255,255,0.6)] hover:transform hover:translate-y-[-8px] hover:scale-[1.02] hover:shadow-[0_30px_60px_rgba(137,137,137,0.2)]">
           <div className="absolute inset-0 bg-gradient-to-br from-[rgba(255,255,255,0.05)] to-[rgba(0,0,0,0.05)] opacity-0 hover:opacity-100 transition-opacity duration-400"></div>
           
-          {isLogin ? (
-            <form onSubmit={handleLoginSubmit} className="space-y-6 relative z-[1]">
-              <div>
-                <input
-                  type="text"
-                  name="username"
-                  value={loginData.username}
-                  onChange={handleLoginChange}
-                  placeholder="Username"
-                  required
-                  className="w-full px-6 py-4 bg-[rgba(15,15,15,0.8)] border-2 border-[rgba(255,255,255,0.3)] rounded-2xl text-white text-lg font-medium transition-all duration-300 backdrop-blur-[10px] focus:outline-none focus:border-[#c7c7c7] focus:shadow-[0_0_0_4px_rgba(160,160,160,0.1)] focus:scale-[1.02] placeholder:text-[#717171] placeholder:opacity-70"
-                />
-              </div>
-
-              <div>
-                <input
-                  type="password"
-                  name="password"
-                  value={loginData.password}
-                  onChange={handleLoginChange}
-                  placeholder="Password"
-                  required
-                  className="w-full px-6 py-4 bg-[rgba(15,15,15,0.8)] border-2 border-[rgba(255,255,255,0.3)] rounded-2xl text-white text-lg font-medium transition-all duration-300 backdrop-blur-[10px] focus:outline-none focus:border-[#c7c7c7] focus:shadow-[0_0_0_4px_rgba(160,160,160,0.1)] focus:scale-[1.02] placeholder:text-[#717171] placeholder:opacity-70"
-                />
-              </div>
-
-              <div>
-                <div className="bg-[rgba(15,15,15,0.8)] border-2 border-[rgba(255,255,255,0.3)] rounded-2xl p-6 mb-4 text-center">
-                  <div className="text-[#b0b0b0] text-sm mb-3 font-medium">Captcha Image</div>
-                  <div className="bg-black p-4 rounded-xl text-white font-mono text-2xl font-bold tracking-wider select-none cursor-pointer hover:bg-gray-900 transition-colors" onClick={regenerateCaptcha}>
-                    {captchaText}
+          {/* Forms container with smooth sliding */}
+          <div className="relative overflow-hidden">
+            <div 
+              className={`flex transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] ${
+                isLogin ? 'translate-x-0' : '-translate-x-full'
+              }`}
+              style={{ width: '200%' }}
+            >
+              {/* Login form */}
+              <div className="w-1/2 pr-4">
+                <form onSubmit={handleLoginSubmit} className="space-y-6 relative z-[1]">
+                  <div>
+                    <input
+                      type="text"
+                      name="username"
+                      value={loginData.username}
+                      onChange={handleLoginChange}
+                      placeholder="Username"
+                      required
+                      className="w-full px-6 py-4 bg-[rgba(15,15,15,0.8)] border-2 border-[rgba(255,255,255,0.3)] rounded-2xl text-white text-lg font-medium transition-all duration-300 backdrop-blur-[10px] focus:outline-none focus:border-[#c7c7c7] focus:shadow-[0_0_0_4px_rgba(160,160,160,0.1)] focus:scale-[1.02] placeholder:text-[#717171] placeholder:opacity-70"
+                    />
                   </div>
-                  <div className="text-xs text-[#888] mt-2">Click to regenerate</div>
-                </div>
-                <input
-                  type="text"
-                  name="captcha"
-                  value={loginData.captcha}
-                  onChange={handleLoginChange}
-                  placeholder="Enter the text above"
-                  required
-                  className="w-full px-6 py-4 bg-[rgba(15,15,15,0.8)] border-2 border-[rgba(255,255,255,0.3)] rounded-2xl text-white text-lg font-medium transition-all duration-300 backdrop-blur-[10px] focus:outline-none focus:border-[#c7c7c7] focus:shadow-[0_0_0_4px_rgba(160,160,160,0.1)] focus:scale-[1.02] placeholder:text-[#717171] placeholder:opacity-70"
-                />
+
+                  <div>
+                    <input
+                      type="password"
+                      name="password"
+                      value={loginData.password}
+                      onChange={handleLoginChange}
+                      placeholder="Password"
+                      required
+                      className="w-full px-6 py-4 bg-[rgba(15,15,15,0.8)] border-2 border-[rgba(255,255,255,0.3)] rounded-2xl text-white text-lg font-medium transition-all duration-300 backdrop-blur-[10px] focus:outline-none focus:border-[#c7c7c7] focus:shadow-[0_0_0_4px_rgba(160,160,160,0.1)] focus:scale-[1.02] placeholder:text-[#717171] placeholder:opacity-70"
+                    />
+                  </div>
+
+                  <div>
+                    <div className="bg-[rgba(15,15,15,0.8)] border-2 border-[rgba(255,255,255,0.3)] rounded-2xl p-6 mb-4 text-center">
+                      <div className="text-[#b0b0b0] text-sm mb-3 font-medium">Captcha Image</div>
+                      <div className="bg-black p-4 rounded-xl text-white font-mono text-2xl font-bold tracking-wider select-none cursor-pointer hover:bg-gray-900 transition-colors" onClick={regenerateCaptcha}>
+                        {captchaText}
+                      </div>
+                      <div className="text-xs text-[#888] mt-2">Click to regenerate</div>
+                    </div>
+                    <input
+                      type="text"
+                      name="captcha"
+                      value={loginData.captcha}
+                      onChange={handleLoginChange}
+                      placeholder="Enter the text above"
+                      required
+                      className="w-full px-6 py-4 bg-[rgba(15,15,15,0.8)] border-2 border-[rgba(255,255,255,0.3)] rounded-2xl text-white text-lg font-medium transition-all duration-300 backdrop-blur-[10px] focus:outline-none focus:border-[#c7c7c7] focus:shadow-[0_0_0_4px_rgba(160,160,160,0.1)] focus:scale-[1.02] placeholder:text-[#717171] placeholder:opacity-70"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full py-4 bg-gradient-to-br from-[#ececec] to-[#8d8d8d] border-none rounded-2xl text-white text-lg font-bold transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] shadow-[0_12px_24px_rgba(255,255,255,0.3)] hover:transform hover:translate-y-[-2px] hover:scale-[1.02] hover:shadow-[0_16px_32px_rgba(255,255,255,0.4)] active:transform active:translate-y-0 active:scale-[0.98]"
+                  >
+                    Login
+                  </button>
+                </form>
               </div>
 
-              <button
-                type="submit"
-                className="w-full py-4 bg-gradient-to-br from-[#ececec] to-[#8d8d8d] border-none rounded-2xl text-white text-lg font-bold transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] shadow-[0_12px_24px_rgba(255,255,255,0.3)] hover:transform hover:translate-y-[-2px] hover:scale-[1.02] hover:shadow-[0_16px_32px_rgba(255,255,255,0.4)] active:transform active:translate-y-0 active:scale-[0.98]"
-              >
-                Login
-              </button>
-            </form>
-          ) : (
-            <form onSubmit={handleRegisterSubmit} className="space-y-4 relative z-[1]">
-              <div>
-                <input
-                  type="text"
-                  name="username"
-                  value={registerData.username}
-                  onChange={handleRegisterChange}
-                  placeholder="Username"
-                  required
-                  className="w-full px-6 py-4 bg-[rgba(15,15,15,0.8)] border-2 border-[rgba(255,255,255,0.3)] rounded-2xl text-white text-lg font-medium transition-all duration-300 backdrop-blur-[10px] focus:outline-none focus:border-[#c7c7c7] focus:shadow-[0_0_0_4px_rgba(160,160,160,0.1)] focus:scale-[1.02] placeholder:text-[#717171] placeholder:opacity-70"
-                />
-              </div>
+              {/* Register form */}
+              <div className="w-1/2 pl-4">
+                <form onSubmit={handleRegisterSubmit} className="space-y-4 relative z-[1]">
+                  <div>
+                    <input
+                      type="text"
+                      name="username"
+                      value={registerData.username}
+                      onChange={handleRegisterChange}
+                      placeholder="Username"
+                      required
+                      className="w-full px-6 py-4 bg-[rgba(15,15,15,0.8)] border-2 border-[rgba(255,255,255,0.3)] rounded-2xl text-white text-lg font-medium transition-all duration-300 backdrop-blur-[10px] focus:outline-none focus:border-[#c7c7c7] focus:shadow-[0_0_0_4px_rgba(160,160,160,0.1)] focus:scale-[1.02] placeholder:text-[#717171] placeholder:opacity-70"
+                    />
+                  </div>
 
-              <div>
-                <input
-                  type="email"
-                  name="email"
-                  value={registerData.email}
-                  onChange={handleRegisterChange}
-                  placeholder="Email"
-                  required
-                  className="w-full px-6 py-4 bg-[rgba(15,15,15,0.8)] border-2 border-[rgba(255,255,255,0.3)] rounded-2xl text-white text-lg font-medium transition-all duration-300 backdrop-blur-[10px] focus:outline-none focus:border-[#c7c7c7] focus:shadow-[0_0_0_4px_rgba(160,160,160,0.1)] focus:scale-[1.02] placeholder:text-[#717171] placeholder:opacity-70"
-                />
-              </div>
+                  <div>
+                    <input
+                      type="email"
+                      name="email"
+                      value={registerData.email}
+                      onChange={handleRegisterChange}
+                      placeholder="Email"
+                      required
+                      className="w-full px-6 py-4 bg-[rgba(15,15,15,0.8)] border-2 border-[rgba(255,255,255,0.3)] rounded-2xl text-white text-lg font-medium transition-all duration-300 backdrop-blur-[10px] focus:outline-none focus:border-[#c7c7c7] focus:shadow-[0_0_0_4px_rgba(160,160,160,0.1)] focus:scale-[1.02] placeholder:text-[#717171] placeholder:opacity-70"
+                    />
+                  </div>
 
-              <div>
-                <input
-                  type="password"
-                  name="password"
-                  value={registerData.password}
-                  onChange={handleRegisterChange}
-                  placeholder="Password"
-                  required
-                  className="w-full px-6 py-4 bg-[rgba(15,15,15,0.8)] border-2 border-[rgba(255,255,255,0.3)] rounded-2xl text-white text-lg font-medium transition-all duration-300 backdrop-blur-[10px] focus:outline-none focus:border-[#c7c7c7] focus:shadow-[0_0_0_4px_rgba(160,160,160,0.1)] focus:scale-[1.02] placeholder:text-[#717171] placeholder:opacity-70"
-                />
-              </div>
+                  <div>
+                    <input
+                      type="password"
+                      name="password"
+                      value={registerData.password}
+                      onChange={handleRegisterChange}
+                      placeholder="Password"
+                      required
+                      className="w-full px-6 py-4 bg-[rgba(15,15,15,0.8)] border-2 border-[rgba(255,255,255,0.3)] rounded-2xl text-white text-lg font-medium transition-all duration-300 backdrop-blur-[10px] focus:outline-none focus:border-[#c7c7c7] focus:shadow-[0_0_0_4px_rgba(160,160,160,0.1)] focus:scale-[1.02] placeholder:text-[#717171] placeholder:opacity-70"
+                    />
+                  </div>
 
-              <div>
-                <input
-                  type="password"
-                  name="confirmPassword"
-                  value={registerData.confirmPassword}
-                  onChange={handleRegisterChange}
-                  placeholder="Confirm Password"
-                  required
-                  className="w-full px-6 py-4 bg-[rgba(15,15,15,0.8)] border-2 border-[rgba(255,255,255,0.3)] rounded-2xl text-white text-lg font-medium transition-all duration-300 backdrop-blur-[10px] focus:outline-none focus:border-[#c7c7c7] focus:shadow-[0_0_0_4px_rgba(160,160,160,0.1)] focus:scale-[1.02] placeholder:text-[#717171] placeholder:opacity-70"
-                />
-              </div>
+                  <div>
+                    <input
+                      type="password"
+                      name="confirmPassword"
+                      value={registerData.confirmPassword}
+                      onChange={handleRegisterChange}
+                      placeholder="Confirm Password"
+                      required
+                      className="w-full px-6 py-4 bg-[rgba(15,15,15,0.8)] border-2 border-[rgba(255,255,255,0.3)] rounded-2xl text-white text-lg font-medium transition-all duration-300 backdrop-blur-[10px] focus:outline-none focus:border-[#c7c7c7] focus:shadow-[0_0_0_4px_rgba(160,160,160,0.1)] focus:scale-[1.02] placeholder:text-[#717171] placeholder:opacity-70"
+                    />
+                  </div>
 
-              <button
-                type="submit"
-                className="w-full py-4 bg-gradient-to-br from-[#ececec] to-[#8d8d8d] border-none rounded-2xl text-white text-lg font-bold transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] shadow-[0_12px_24px_rgba(255,255,255,0.3)] hover:transform hover:translate-y-[-2px] hover:scale-[1.02] hover:shadow-[0_16px_32px_rgba(255,255,255,0.4)] active:transform active:translate-y-0 active:scale-[0.98]"
-              >
-                Register
-              </button>
-            </form>
-          )}
+                  <button
+                    type="submit"
+                    className="w-full py-4 bg-gradient-to-br from-[#ececec] to-[#8d8d8d] border-none rounded-2xl text-white text-lg font-bold transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] shadow-[0_12px_24px_rgba(255,255,255,0.3)] hover:transform hover:translate-y-[-2px] hover:scale-[1.02] hover:shadow-[0_16px_32px_rgba(255,255,255,0.4)] active:transform active:translate-y-0 active:scale-[0.98] mt-6"
+                  >
+                    Register
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
 
           {statusMessage.text && (
             <div className={`mt-4 flex items-center gap-3 px-5 py-4 rounded-xl animate-[slideIn_0.3s_ease] relative z-[1] ${
